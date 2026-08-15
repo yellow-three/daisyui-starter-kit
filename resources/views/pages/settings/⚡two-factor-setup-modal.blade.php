@@ -152,11 +152,14 @@ new class extends Component {
     }
 }; ?>
 
-<flux:modal
-    name="two-factor-setup-modal"
-    class="max-w-md md:min-w-md"
-    @close="closeModal"
+<dialog
+    class="modal"
+    x-data
+    x-on:modal-show.window="if ($event.detail.name === 'two-factor-setup-modal') $el.showModal()"
+    x-on:two-factor-enabled.window="$el.close()"
+    x-on:close="$wire.call('closeModal')"
 >
+    <div class="modal-box">
         <div class="space-y-6">
             <div class="flex flex-col items-center space-y-4">
                 <div class="p-0.5 w-auto rounded-full border border-stone-100 dark:border-stone-600 bg-white dark:bg-stone-800 shadow-sm">
@@ -173,13 +176,16 @@ new class extends Component {
                             @endfor
                         </div>
 
-                        <flux:icon.qr-code class="relative z-20 dark:text-accent-foreground"/>
+                        <svg class="relative z-20 size-6 dark:text-accent-foreground" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 3.75 9.375v-4.5ZM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 0 1-1.125-1.125v-4.5ZM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0 1 13.5 9.375v-4.5Z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75ZM6.75 16.5h.75v.75h-.75v-.75ZM16.5 6.75h.75v.75h-.75v-.75ZM13.5 13.5h.75v.75h-.75v-.75ZM13.5 19.5h.75v.75h-.75v-.75ZM19.5 13.5h.75v.75h-.75v-.75ZM19.5 19.5h.75v.75h-.75v-.75ZM16.5 16.5h.75v.75h-.75v-.75Z"/>
+                        </svg>
                     </div>
                 </div>
 
                 <div class="space-y-2 text-center">
-                    <flux:heading size="lg">{{ $this->modalConfig['title'] }}</flux:heading>
-                    <flux:text>{{ $this->modalConfig['description'] }}</flux:text>
+                    <h3 class="text-base font-medium text-zinc-800 dark:text-white">{{ $this->modalConfig['title'] }}</h3>
+                    <p class="text-sm text-zinc-500 dark:text-white/70">{{ $this->modalConfig['description'] }}</p>
                 </div>
             </div>
 
@@ -190,51 +196,62 @@ new class extends Component {
                         x-data
                         x-init="$nextTick(() => $el.querySelector('input')?.focus())"
                     >
-                        <flux:otp
+                        <label for="code" class="sr-only">{{ __('OTP Code') }}</label>
+                        <input
+                            id="code"
+                            type="text"
+                            inputmode="numeric"
+                            maxlength="6"
+                            autocomplete="one-time-code"
+                            pattern="[0-9]*"
                             name="code"
                             wire:model="code"
-                            length="6"
-                            label="OTP Code"
-                            label:sr-only
-                            class="mx-auto"
+                            class="input input-lg text-center tracking-[0.4em] mx-auto w-40"
                         />
                     </div>
 
                     <div class="flex items-center space-x-3">
-                        <flux:button
-                            variant="outline"
-                            class="flex-1"
+                        <button
+                            type="button"
                             wire:click="resetVerification"
+                            class="btn btn-outline flex-1"
                         >
                             {{ __('Back') }}
-                        </flux:button>
+                        </button>
 
-                        <flux:button
-                            variant="primary"
-                            class="flex-1"
+                        <button
+                            type="button"
                             wire:click="confirmTwoFactor"
                             x-bind:disabled="$wire.code.length < 6"
+                            class="btn btn-primary flex-1"
                         >
                             {{ __('Confirm') }}
-                        </flux:button>
+                        </button>
                     </div>
                 </div>
             @else
                 @error('setupData')
-                    <flux:callout variant="danger" icon="x-circle" heading="{{ $message }}"/>
+                    <div class="alert alert-error" role="alert">
+                        <svg class="size-5 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                        </svg>
+                        <span>{{ $message }}</span>
+                    </div>
                 @enderror
 
                 <div class="flex justify-center">
                     <div class="relative w-64 overflow-hidden border rounded-lg border-stone-200 dark:border-stone-700 aspect-square">
                         @empty($qrCodeSvg)
                             <div class="absolute inset-0 flex items-center justify-center bg-white dark:bg-stone-700 animate-pulse">
-                                <flux:icon.loading/>
+                                <svg class="size-6 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon">
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
                             </div>
                         @else
                             <div x-data class="flex items-center justify-center h-full p-4">
                                 <div
                                     class="bg-white p-3 rounded"
-                                    :style="($flux.appearance === 'dark' || ($flux.appearance === 'system' && $flux.dark)) ? 'filter: invert(1) brightness(1.5)' : ''"
+                                    :style="$store.theme.dark ? 'filter: invert(1) brightness(1.5)' : ''"
                                 >
                                     {!! $qrCodeSvg !!}
                                 </div>
@@ -244,14 +261,14 @@ new class extends Component {
                 </div>
 
                 <div>
-                    <flux:button
+                    <button
+                        type="button"
                         :disabled="$errors->has('setupData')"
-                        variant="primary"
-                        class="w-full"
                         wire:click="showVerificationIfNecessary"
+                        class="btn btn-primary w-full"
                     >
                         {{ $this->modalConfig['buttonText'] }}
-                    </flux:button>
+                    </button>
                 </div>
 
                 <div class="space-y-4">
@@ -280,7 +297,9 @@ new class extends Component {
                         <div class="flex items-stretch w-full border rounded-xl dark:border-stone-700">
                             @empty($manualSetupKey)
                                 <div class="flex items-center justify-center w-full p-3 bg-stone-100 dark:bg-stone-700">
-                                    <flux:icon.loading variant="mini"/>
+                                    <svg class="size-5 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon">
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
                                 </div>
                             @else
                                 <input
@@ -291,15 +310,24 @@ new class extends Component {
                                 />
 
                                 <button
+                                    type="button"
                                     @click="copy()"
                                     class="px-3 transition-colors border-l cursor-pointer border-stone-200 dark:border-stone-600"
                                 >
-                                    <flux:icon.document-duplicate x-show="!copied" variant="outline"></flux:icon>
-                                    <flux:icon.check
+                                    <svg x-show="!copied" class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/>
+                                    </svg>
+                                    <svg
                                         x-show="copied"
-                                        variant="solid"
-                                        class="text-green-500"
-                                    ></flux:icon>
+                                        class="size-5 text-green-500"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                        aria-hidden="true"
+                                        data-slot="icon"
+                                    >
+                                        <path fill-rule="evenodd" d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd"/>
+                                    </svg>
                                 </button>
                             @endempty
                         </div>
@@ -307,4 +335,9 @@ new class extends Component {
                 </div>
             @endif
         </div>
-</flux:modal>
+    </div>
+
+    <form method="dialog" class="modal-backdrop">
+        <button type="button">{{ __('Close') }}</button>
+    </form>
+</dialog>

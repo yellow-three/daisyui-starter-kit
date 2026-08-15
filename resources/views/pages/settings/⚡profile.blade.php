@@ -2,7 +2,6 @@
 
 use App\Concerns\ProfileValidationRules;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Flux\Flux;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Computed;
@@ -41,7 +40,7 @@ new #[Title('Profile settings')] class extends Component {
 
         $user->save();
 
-        Flux::toast(variant: 'success', text: __('Profile updated.'));
+        $this->dispatch('toast-show', ['type' => 'success', 'message' => __('Profile updated.')]);
     }
 
     /**
@@ -79,29 +78,39 @@ new #[Title('Profile settings')] class extends Component {
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <flux:heading class="sr-only">{{ __('Profile settings') }}</flux:heading>
+    <h2 class="sr-only text-sm font-medium text-zinc-800 dark:text-white">{{ __('Profile settings') }}</h2>
 
     <x-pages::settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
-            <flux:input wire:model="name" :label="__('Name')" type="text" required autofocus autocomplete="name" />
+            <div class="flex flex-col gap-3">
+                <label for="name" class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('Name') }}</label>
+                <input id="name" wire:model="name" type="text" required autofocus autocomplete="name" class="input w-full" />
+            </div>
 
             <div>
-                <flux:input wire:model="email" :label="__('Email')" type="email" required autocomplete="email" />
+                <div class="flex flex-col gap-3">
+                    <label for="email" class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('Email') }}</label>
+                    <input id="email" wire:model="email" type="email" required autocomplete="email" class="input w-full" />
+                </div>
 
                 @if ($this->hasUnverifiedEmail)
                     <div>
-                        <flux:text class="mt-4">
+                        <p class="mt-4 text-sm text-zinc-500 dark:text-white/70">
                             {{ __('Your email address is unverified.') }}
 
-                            <flux:link class="text-sm cursor-pointer" wire:click.prevent="resendVerificationNotification">
+                            <button
+                                type="button"
+                                wire:click.prevent="resendVerificationNotification"
+                                class="inline text-sm font-medium cursor-pointer underline underline-offset-[6px] hover:decoration-current text-[var(--color-accent-content)] decoration-[color-mix(in_oklab,var(--color-accent-content),transparent_80%)]"
+                            >
                                 {{ __('Click here to re-send the verification email.') }}
-                            </flux:link>
-                        </flux:text>
+                            </button>
+                        </p>
 
                         @if (session('status') === 'verification-link-sent')
-                            <flux:text class="mt-2 font-medium !dark:text-green-400 !text-green-600">
+                            <p class="mt-2 text-sm font-medium text-green-600! dark:text-green-400!">
                                 {{ __('A new verification link has been sent to your email address.') }}
-                            </flux:text>
+                            </p>
                         @endif
                     </div>
                 @endif
@@ -109,9 +118,9 @@ new #[Title('Profile settings')] class extends Component {
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full" data-test="update-profile-button">
+                    <button type="submit" class="btn btn-primary w-full" data-test="update-profile-button">
                         {{ __('Save') }}
-                    </flux:button>
+                    </button>
                 </div>
 
             </div>
