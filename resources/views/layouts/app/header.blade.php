@@ -4,81 +4,138 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:header container class="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
-            <flux:sidebar.toggle class="lg:hidden mr-2" icon="bars-2" inset="left" />
+        <div class="drawer lg:drawer-open">
+            <input id="app-drawer" type="checkbox" class="drawer-toggle" />
 
-            <x-app-logo href="{{ route('dashboard') }}" wire:navigate />
+            <div class="drawer-content flex min-h-screen flex-col">
+                <header class="border-b bg-base-100">
+                    <div class="navbar">
+                        <div class="flex items-center gap-2">
+                            <label for="app-drawer" class="btn btn-ghost btn-square mr-2 lg:hidden" aria-label="{{ __('Toggle sidebar') }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+                                    <path d="M4 6h16" />
+                                    <path d="M4 12h16" />
+                                    <path d="M4 18h16" />
+                                </svg>
+                            </label>
 
-            <flux:navbar class="-mb-px max-lg:hidden">
-                <flux:navbar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                    {{ __('Dashboard') }}
-                </flux:navbar.item>
-            </flux:navbar>
+                            <x-app-logo href="{{ route('dashboard') }}" wire:navigate />
 
-            <flux:spacer />
+                            <nav class="hidden lg:block">
+                                <ul class="menu menu-horizontal gap-1 px-1">
+                                    <li>
+                                        <a href="{{ route('dashboard') }}" wire:navigate @class(['menu-active' => request()->routeIs('dashboard')])>
+                                            {{ __('Dashboard') }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
 
-            <flux:navbar class="me-1.5 space-x-0.5 rtl:space-x-reverse py-0!">
-                <flux:tooltip :content="__('Search')" position="bottom">
-                    <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="magnifying-glass" href="#" :label="__('Search')" />
-                </flux:tooltip>
-                <flux:tooltip :content="__('Repository')" position="bottom">
-                    <flux:navbar.item
-                        class="h-10 max-lg:hidden [&>div>svg]:size-5"
-                        icon="folder-git-2"
-                        href="https://github.com/laravel/livewire-starter-kit"
-                        target="_blank"
-                        :label="__('Repository')"
-                    />
-                </flux:tooltip>
-                <flux:tooltip :content="__('Documentation')" position="bottom">
-                    <flux:navbar.item
-                        class="h-10 max-lg:hidden [&>div>svg]:size-5"
-                        icon="book-open-text"
-                        href="https://laravel.com/docs/starter-kits#livewire"
-                        target="_blank"
-                        :label="__('Documentation')"
-                    />
-                </flux:tooltip>
-            </flux:navbar>
+                        <div class="flex-1"></div>
 
-            <x-desktop-user-menu />
-        </flux:header>
+                        <div class="flex items-center gap-1.5">
+                            <nav class="me-1.5 flex items-center gap-0.5">
+                                <a href="#" title="{{ __('Search') }}" class="btn btn-ghost btn-square h-10">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+                                        <circle cx="11" cy="11" r="8" />
+                                        <path d="m21 21-4.3-4.3" />
+                                    </svg>
+                                </a>
+                                <a href="https://github.com/laravel/livewire-starter-kit" target="_blank" title="{{ __('Repository') }}" class="btn btn-ghost btn-square h-10 max-lg:hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+                                        <path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5" />
+                                        <circle cx="13" cy="12" r="2" />
+                                        <path d="M18 19c-2.8 0-5-2.2-5-5v8" />
+                                        <circle cx="20" cy="19" r="2" />
+                                    </svg>
+                                </a>
+                                <a href="https://laravel.com/docs/starter-kits#livewire" target="_blank" title="{{ __('Documentation') }}" class="btn btn-ghost btn-square h-10 max-lg:hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+                                        <path d="M12 7v14" />
+                                        <path d="M16 12h2" />
+                                        <path d="M16 8h2" />
+                                        <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+                                        <path d="M6 12h2" />
+                                        <path d="M6 8h2" />
+                                    </svg>
+                                </a>
+                            </nav>
 
-        <!-- Mobile Menu -->
-        <flux:sidebar collapsible="mobile" sticky class="lg:hidden border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
-            <flux:sidebar.header>
-                <x-app-logo :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
-                <flux:sidebar.collapse class="in-data-flux-sidebar-on-desktop:not-in-data-flux-sidebar-collapsed-desktop:-mr-2" />
-            </flux:sidebar.header>
+                            <x-desktop-user-menu />
+                        </div>
+                    </div>
+                </header>
 
-            <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Platform')">
-                    <flux:sidebar.item icon="layout-grid" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Dashboard')  }}
-                    </flux:sidebar.item>
-                </flux:sidebar.group>
-            </flux:sidebar.nav>
+                {{ $slot }}
+            </div>
 
-            <flux:spacer />
+            <div class="drawer-side z-40">
+                <label for="app-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+                <div class="flex min-h-full w-64 flex-col bg-base-100">
+                    <div class="p-4">
+                        <x-app-logo :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
+                    </div>
 
-            <flux:sidebar.nav>
-                <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                    {{ __('Repository') }}
-                </flux:sidebar.item>
-                <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
-                    {{ __('Documentation') }}
-                </flux:sidebar.item>
-            </flux:sidebar.nav>
-        </flux:sidebar>
+                    <ul class="menu flex-1 flex-col gap-1 px-2">
+                        <li class="menu-title">{{ __('Platform') }}</li>
+                        <li>
+                            <a href="{{ route('dashboard') }}" wire:navigate @class(['menu-active' => request()->routeIs('dashboard')])>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+                                    <rect width="7" height="7" x="3" y="3" rx="1" />
+                                    <rect width="7" height="7" x="14" y="3" rx="1" />
+                                    <rect width="7" height="7" x="14" y="14" rx="1" />
+                                    <rect width="7" height="7" x="3" y="14" rx="1" />
+                                </svg>
+                                {{ __('Dashboard') }}
+                            </a>
+                        </li>
 
-        {{ $slot }}
+                        <li class="flex-1"></li>
+
+                        <li>
+                            <a href="https://github.com/laravel/livewire-starter-kit" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+                                    <path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5" />
+                                    <circle cx="13" cy="12" r="2" />
+                                    <path d="M18 19c-2.8 0-5-2.2-5-5v8" />
+                                    <circle cx="20" cy="19" r="2" />
+                                </svg>
+                                {{ __('Repository') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+                                    <path d="M12 7v14" />
+                                    <path d="M16 12h2" />
+                                    <path d="M16 8h2" />
+                                    <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+                                    <path d="M6 12h2" />
+                                    <path d="M6 8h2" />
+                                </svg>
+                                {{ __('Documentation') }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
         @persist('toast')
-            <flux:toast.group>
-                <flux:toast />
-            </flux:toast.group>
+        <div
+            x-data="{ show: false, type: 'success', message: '' }"
+            x-on:toast-show.window="show = true; type = $event.detail.type ?? 'success'; message = $event.detail.message ?? ''; setTimeout(() => show = false, 4000)"
+            x-show="show"
+            x-transition.opacity.duration.300ms
+            class="toast toast-end z-[100]"
+        >
+            <div class="alert" :class="type === 'error' ? 'alert-error' : 'alert-success'">
+                <span x-text="message"></span>
+            </div>
+        </div>
         @endpersist
 
-        @fluxScripts
+        @livewireScripts
     </body>
 </html>

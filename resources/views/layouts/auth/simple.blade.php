@@ -19,11 +19,19 @@
         </div>
 
         @persist('toast')
-            <flux:toast.group>
-                <flux:toast />
-            </flux:toast.group>
+        <div
+            x-data="{ show: false, type: 'success', message: '' }"
+            x-on:toast-show.window="show = true; type = $event.detail.type ?? 'success'; message = $event.detail.message ?? ''; setTimeout(() => show = false, 4000)"
+            x-show="show"
+            x-transition.opacity.duration.300ms
+            class="toast toast-end z-[100]"
+        >
+            <div class="alert" :class="type === 'error' ? 'alert-error' : 'alert-success'">
+                <span x-text="message"></span>
+            </div>
+        </div>
         @endpersist
 
-        @fluxScripts
+        @livewireScripts
     </body>
 </html>
