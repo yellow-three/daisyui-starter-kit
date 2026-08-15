@@ -154,11 +154,11 @@ new class extends Component {
 
 <dialog
     class="modal"
-    x-data
-    x-effect="if (($wire.qrCodeSvg || $wire.showVerificationStep || $wire.setupComplete) && ! $el.open) $el.showModal(); if (! $wire.qrCodeSvg && ! $wire.showVerificationStep && ! $wire.setupComplete && $el.open) $el.close()"
-    x-on:modal-show.window="if ($event.detail.name === 'two-factor-setup-modal') $el.showModal()"
-    x-on:two-factor-enabled.window="$el.close()"
-    x-on:close="$wire.call('closeModal')"
+    x-data="{ open: false }"
+    x-on:modal-show.window="if ($event.detail.name === 'two-factor-setup-modal') { open = true; $el.showModal() }"
+    x-on:two-factor-enabled.window="open = false; $el.close()"
+    x-on:cancel="open = false"
+    x-on:close="if (open) $el.showModal(); else $wire.call('closeModal')"
 >
     <div class="modal-box">
         <div class="space-y-6">
@@ -338,7 +338,7 @@ new class extends Component {
         </div>
     </div>
 
-    <form method="dialog" class="modal-backdrop">
+    <form method="dialog" class="modal-backdrop" x-on:click="open = false">
         <button type="button">{{ __('Close') }}</button>
     </form>
 </dialog>
