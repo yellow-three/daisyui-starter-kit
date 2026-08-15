@@ -14,6 +14,18 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 <script>
+// Apply the stored theme synchronously at parse time (before Alpine boots) to avoid a flash of light/dark.
+(function () {
+    const stored = localStorage.getItem('theme');
+    const initialRaw = stored || 'light';
+    const initialDark = initialRaw === 'dark' || (initialRaw === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.setAttribute('data-theme', initialDark ? 'dark' : 'light');
+    document.documentElement.classList.toggle('dark', initialDark);
+})();
+
+// Re-apply the theme after a wire:navigate morphs in fresh server HTML (no hardcoded class on <html>).
+document.addEventListener('livewire:navigated', () => Alpine.store('theme')?.apply());
+
 document.addEventListener('alpine:init', () => {
     Alpine.store('theme', {
         raw: 'light',
@@ -51,13 +63,6 @@ document.addEventListener('alpine:init', () => {
             });
         }
     });
-
-    // Initialize immediately on page load (before Alpine fully boots)
-    const stored = localStorage.getItem('theme');
-    const initialRaw = stored || 'light';
-    const initialDark = initialRaw === 'dark' || (initialRaw === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    document.documentElement.setAttribute('data-theme', initialDark ? 'dark' : 'light');
-    document.documentElement.classList.toggle('dark', initialDark);
 
     // Listen for theme-change events from other components
     window.addEventListener('theme-change', (event) => {

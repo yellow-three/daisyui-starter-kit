@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         @include('partials.head')
     </head>
@@ -42,7 +42,7 @@
         @persist('toast')
         <div
             x-data="{ show: false, type: 'success', message: '' }"
-            x-on:toast-show.window="show = true; type = $event.detail.type ?? 'success'; message = $event.detail.message ?? ''; setTimeout(() => show = false, 4000)"
+            x-on:toast-show.window="show = true; type = $event.detail.type ?? $event.detail[0]?.type ?? 'success'; message = $event.detail.message ?? $event.detail[0]?.message ?? ''; setTimeout(() => show = false, 4000)"
             x-show="show"
             x-transition.opacity.duration.300ms
             class="toast toast-end z-[100]"

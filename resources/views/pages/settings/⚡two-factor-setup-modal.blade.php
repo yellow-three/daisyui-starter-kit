@@ -155,6 +155,7 @@ new class extends Component {
 <dialog
     class="modal"
     x-data
+    x-effect="if (($wire.qrCodeSvg || $wire.showVerificationStep || $wire.setupComplete) && ! $el.open) $el.showModal(); if (! $wire.qrCodeSvg && ! $wire.showVerificationStep && ! $wire.setupComplete && $el.open) $el.close()"
     x-on:modal-show.window="if ($event.detail.name === 'two-factor-setup-modal') $el.showModal()"
     x-on:two-factor-enabled.window="$el.close()"
     x-on:close="$wire.call('closeModal')"

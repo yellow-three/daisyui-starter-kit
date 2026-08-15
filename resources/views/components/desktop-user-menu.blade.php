@@ -2,7 +2,7 @@
     'name' => null,
 ])
 
-<div {{ $attributes->class(['dropdown dropdown-end']) }}>
+<div {{ $attributes->class(['dropdown dropdown-end dropdown-top']) }}>
     <div tabindex="0" role="button" class="flex items-center gap-2 rounded-btn p-1.5 hover:bg-zinc-200/70 dark:hover:bg-zinc-800" data-test="sidebar-menu-button">
         <div class="avatar placeholder">
             <div class="w-8 rounded-full bg-accent-content text-sm text-accent-foreground">
