@@ -2,11 +2,11 @@
     'name' => null,
 ])
 
-<div {{ $attributes->class(['dropdown dropdown-end dropdown-top']) }}>
+<div {{ $attributes->class(['dropdown dropdown-center dropdown-top']) }}>
     <div tabindex="0" role="button" class="flex items-center gap-2 rounded-btn p-1.5 hover:bg-zinc-200/70 dark:hover:bg-zinc-800" data-test="sidebar-menu-button">
-        <div class="avatar placeholder">
+        <div class="avatar avatar-placeholder">
             <div class="w-8 rounded-full bg-accent-content text-sm text-accent-foreground">
-                <span>{{ auth()->user()->initials() }}</span>
+                <span class="text-xl">{{ auth()->user()->initials() }}</span>
             </div>
         </div>
 
@@ -20,12 +20,12 @@
         </svg>
     </div>
 
-    <ul tabindex="-1" class="dropdown-content menu z-[1] mt-2 w-64 rounded-box border border-zinc-200 bg-white p-2 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
+    <ul tabindex="-1" class="dropdown-content menu z-1 mt-2 w-64 rounded-box border border-zinc-200 bg-white p-2 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
         <li>
             <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-                <div class="avatar placeholder">
+                <div class="avatar avatar-placeholder">
                     <div class="w-8 rounded-full bg-accent-content text-accent-foreground">
-                        <span>{{ auth()->user()->initials() }}</span>
+                        <span class="text-xl">{{ auth()->user()->initials() }}</span>
                     </div>
                 </div>
 
