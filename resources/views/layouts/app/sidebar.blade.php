@@ -3,13 +3,13 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
+    <body class="min-h-screen bg-base-100">
         <div class="drawer lg:drawer-open">
             <input id="app-drawer" type="checkbox" class="drawer-toggle" />
 
             <!-- Mobile header -->
             <div class="drawer-content flex min-h-screen flex-col">
-                <header class="flex items-center gap-2 border-b border-zinc-200 bg-zinc-50 px-4 py-3 lg:hidden dark:border-zinc-700 dark:bg-zinc-900">
+                <header class="flex items-center gap-2 border-b border-base-300 bg-base-100 px-4 py-3 lg:hidden">
                     <label for="app-drawer" class="btn btn-ghost btn-square shrink-0" aria-label="{{ __('Toggle sidebar') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />
@@ -19,19 +19,19 @@
                     <div class="flex-1"></div>
 
                     <div class="dropdown dropdown-end">
-                        <div tabindex="0" role="button" class="flex items-center gap-2 rounded-btn p-1.5 hover:bg-zinc-200/70 dark:hover:bg-zinc-800">
+                        <div tabindex="0" role="button" class="flex items-center gap-2 rounded-btn p-1.5 hover:bg-base-200/70">
                             <div class="avatar placeholder">
                                 <div class="w-8 rounded-full bg-accent-content text-sm text-accent-foreground">
                                     <span>{{ auth()->user()->initials() }}</span>
                                 </div>
                             </div>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-zinc-500 dark:text-zinc-400" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-base-content/60" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                             </svg>
                         </div>
 
-                        <ul tabindex="-1" class="dropdown-content menu z-[1] mt-2 w-64 rounded-box border border-zinc-200 bg-white p-2 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
+                        <ul tabindex="-1" class="dropdown-content menu z-[1] mt-2 w-64 rounded-box border border-base-300 bg-base-100 p-2 shadow-lg">
                             <li>
                                 <div class="flex items-center gap-3 px-1 py-1.5 text-start text-sm">
                                     <div class="avatar placeholder">
@@ -42,7 +42,7 @@
 
                                     <div class="grid flex-1 text-start text-sm leading-tight">
                                         <span class="truncate font-medium">{{ auth()->user()->name }}</span>
-                                        <span class="truncate text-zinc-500 dark:text-zinc-400">{{ auth()->user()->email }}</span>
+                                        <span class="truncate text-base-content/60">{{ auth()->user()->email }}</span>
                                     </div>
                                 </div>
                             </li>
@@ -81,10 +81,10 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="drawer-side z-20">
+            <div class="drawer-side z-20 lg:overflow-visible">
                 <label for="app-drawer" aria-label="{{ __('Close sidebar') }}" class="drawer-overlay"></label>
 
-                <aside class="flex min-h-dvh w-64 flex-col gap-4 border-e border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-900">
+                <aside class="flex min-h-dvh w-64 flex-col gap-4 border-e border-base-300 bg-base-100 p-4">
                     <div class="flex items-center justify-between gap-2">
                         <x-app-logo :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
 

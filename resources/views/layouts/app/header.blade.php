@@ -3,7 +3,7 @@
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-white dark:bg-zinc-800">
+    <body class="min-h-screen bg-base-100">
         <div class="drawer lg:drawer-open">
             <input id="app-drawer" type="checkbox" class="drawer-toggle" />
 

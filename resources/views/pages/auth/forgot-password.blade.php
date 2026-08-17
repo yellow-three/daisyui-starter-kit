@@ -10,7 +10,7 @@
 
             <!-- Email Address -->
             <div class="flex flex-col gap-3">
-                <label for="email" class="text-sm font-medium text-zinc-800 dark:text-white">
+                <label for="email" class="text-sm font-medium text-base-content">
                     {{ __('Email address') }}
                 </label>
 
@@ -30,7 +30,7 @@
             </button>
         </form>
 
-        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-400">
+        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-base-content/60">
             <span>{{ __('Or, return to') }}</span>
             <a href="{{ route('login') }}" wire:navigate class="text-sm font-medium text-[var(--color-accent-content)] underline underline-offset-[6px] hover:decoration-current">{{ __('log in') }}</a>
         </div>

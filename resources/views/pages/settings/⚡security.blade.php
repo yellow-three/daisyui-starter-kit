@@ -168,12 +168,12 @@ new #[Title('Security settings')] class extends Component {
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <h2 class="sr-only text-sm font-medium text-zinc-800 dark:text-white">{{ __('Security settings') }}</h2>
+    <h2 class="sr-only text-sm font-medium text-base-content">{{ __('Security settings') }}</h2>
 
     <x-pages::settings.layout :heading="__('Update password')" :subheading="__('Ensure your account is using a long, random password to stay secure')">
         <form method="POST" wire:submit="updatePassword" class="mt-6 space-y-6">
             <div class="flex flex-col gap-3">
-                <label for="current_password" class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('Current password') }}</label>
+                <label for="current_password" class="text-sm font-medium text-base-content">{{ __('Current password') }}</label>
 
                 <div class="relative" x-data="{ show: false }">
                     <input
@@ -192,7 +192,7 @@ new #[Title('Security settings')] class extends Component {
                         type="button"
                         x-on:click="show = !show"
                         aria-label="{{ __('Toggle password visibility') }}"
-                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-zinc-500 hover:text-zinc-800 dark:hover:text-white"
+                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-base-content/50 hover:text-base-content"
                     >
                         <svg :class="show ? 'hidden' : ''" class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
@@ -207,7 +207,7 @@ new #[Title('Security settings')] class extends Component {
             </div>
 
             <div class="flex flex-col gap-3">
-                <label for="password" class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('New password') }}</label>
+                <label for="password" class="text-sm font-medium text-base-content">{{ __('New password') }}</label>
 
                 <div class="relative" x-data="{ show: false }">
                     <input
@@ -227,7 +227,7 @@ new #[Title('Security settings')] class extends Component {
                         type="button"
                         x-on:click="show = !show"
                         aria-label="{{ __('Toggle password visibility') }}"
-                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-zinc-500 hover:text-zinc-800 dark:hover:text-white"
+                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-base-content/50 hover:text-base-content"
                     >
                         <svg :class="show ? 'hidden' : ''" class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
@@ -242,7 +242,7 @@ new #[Title('Security settings')] class extends Component {
             </div>
 
             <div class="flex flex-col gap-3">
-                <label for="password_confirmation" class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('Confirm password') }}</label>
+                <label for="password_confirmation" class="text-sm font-medium text-base-content">{{ __('Confirm password') }}</label>
 
                 <div class="relative" x-data="{ show: false }">
                     <input
@@ -262,7 +262,7 @@ new #[Title('Security settings')] class extends Component {
                         type="button"
                         x-on:click="show = !show"
                         aria-label="{{ __('Toggle password visibility') }}"
-                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-zinc-500 hover:text-zinc-800 dark:hover:text-white"
+                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-base-content/50 hover:text-base-content"
                     >
                         <svg :class="show ? 'hidden' : ''" class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
@@ -285,13 +285,13 @@ new #[Title('Security settings')] class extends Component {
 
         @if ($canManageTwoFactor)
             <section class="mt-12">
-                <h2 class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('Two-factor authentication') }}</h2>
-                <p class="text-sm text-zinc-500 dark:text-white/70">{{ __('Manage your two-factor authentication settings') }}</p>
+                <h2 class="text-sm font-medium text-base-content">{{ __('Two-factor authentication') }}</h2>
+                <p class="text-sm text-base-content/70">{{ __('Manage your two-factor authentication settings') }}</p>
 
                 <div class="flex flex-col w-full mx-auto space-y-6 text-sm" wire:cloak>
                     @if ($twoFactorEnabled)
                         <div class="space-y-4">
-                            <p class="text-sm text-zinc-500 dark:text-white/70">
+                            <p class="text-sm text-base-content/70">
                                 {{ __('You will be prompted for a secure, random pin during login, which you can retrieve from the TOTP-supported application on your phone.') }}
                             </p>
 
@@ -309,7 +309,7 @@ new #[Title('Security settings')] class extends Component {
                         </div>
                     @else
                         <div class="space-y-4">
-                            <p class="text-sm text-zinc-400 dark:text-white/50">
+                            <p class="text-sm text-base-content/50">
                                 {{ __('When you enable two-factor authentication, you will be prompted for a secure pin during login. This pin can be retrieved from a TOTP-supported application on your phone.') }}
                             </p>
 
@@ -331,16 +331,16 @@ new #[Title('Security settings')] class extends Component {
 
         @if ($canManagePasskeys)
             <section class="mt-12">
-                <h2 class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('Passkeys') }}</h2>
-                <p class="text-sm text-zinc-500 dark:text-white/70">{{ __('Manage your passkeys for passwordless sign-in') }}</p>
+                <h2 class="text-sm font-medium text-base-content">{{ __('Passkeys') }}</h2>
+                <p class="text-sm text-base-content/70">{{ __('Manage your passkeys for passwordless sign-in') }}</p>
 
                 <div class="mt-6 flex flex-col w-full mx-auto space-y-6 text-sm" wire:cloak>
-                    <div class="border rounded-lg border-zinc-200 dark:border-zinc-700 overflow-hidden">
+                    <div class="border rounded-lg border-base-300 overflow-hidden">
                         @forelse ($passkeys as $passkey)
-                            <div class="flex items-center justify-between p-4 {{ ! $loop->last ? 'border-b border-zinc-200 dark:border-zinc-700' : '' }}">
+                            <div class="flex items-center justify-between p-4 {{ ! $loop->last ? 'border-b border-base-300' : '' }}">
                                 <div class="flex items-center gap-4">
-                                    <div class="flex size-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 dark:bg-zinc-800">
-                                        <svg class="size-5 text-zinc-500 dark:text-zinc-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                                    <div class="flex size-10 shrink-0 items-center justify-center rounded-xl bg-base-200">
+                                        <svg class="size-5 text-base-content/60" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"/>
                                         </svg>
                                     </div>
@@ -351,7 +351,7 @@ new #[Title('Security settings')] class extends Component {
                                                 <span class="badge badge-sm badge-ghost">{{ $passkey['authenticator'] }}</span>
                                             @endif
                                         </div>
-                                        <p class="text-zinc-500 dark:text-zinc-400 text-xs">
+                                        <p class="text-base-content/60 text-xs">
                                             {{ __('Added :time', ['time' => $passkey['created_at_diff']]) }}
                                             @if ($passkey['last_used_at_diff'])
                                                 <span class="opacity-50 mx-1">/</span>
@@ -364,7 +364,7 @@ new #[Title('Security settings')] class extends Component {
                                 <button
                                     type="button"
                                     wire:click="confirmDelete({{ $passkey['id'] }})"
-                                    class="btn btn-ghost btn-sm text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/50"
+                                    class="btn btn-ghost btn-sm text-error hover:text-error hover:bg-error/10"
                                     aria-label="{{ __('Delete passkey') }}"
                                 >
                                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
@@ -374,13 +374,13 @@ new #[Title('Security settings')] class extends Component {
                             </div>
                         @empty
                             <div class="p-8 text-center">
-                                <div class="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-zinc-100 dark:bg-zinc-800">
-                                    <svg class="size-7 text-zinc-400 dark:text-zinc-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+                                <div class="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-base-200">
+                                    <svg class="size-7 text-base-content/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"/>
                                     </svg>
                                 </div>
                                 <p class="font-medium">{{ __('No passkeys yet') }}</p>
-                                <p class="mt-1 text-sm text-zinc-500 dark:text-white/70">{{ __('Add a passkey to sign in without a password') }}</p>
+                                <p class="mt-1 text-sm text-base-content/70">{{ __('Add a passkey to sign in without a password') }}</p>
                             </div>
                         @endforelse
                     </div>
@@ -402,8 +402,8 @@ new #[Title('Security settings')] class extends Component {
         <div class="modal-box">
             <div class="space-y-6">
                 <div class="space-y-2">
-                    <h3 class="text-base font-medium text-zinc-800 dark:text-white">{{ __('Remove passkey') }}</h3>
-                    <p class="text-sm text-zinc-500 dark:text-white/70">
+                    <h3 class="text-base font-medium text-base-content">{{ __('Remove passkey') }}</h3>
+                    <p class="text-sm text-base-content/70">
                         {{ __('Are you sure you want to remove the passkey ":name"? You will no longer be able to use it to sign in.', ['name' => $deletingPasskeyName]) }}
                     </p>
                 </div>

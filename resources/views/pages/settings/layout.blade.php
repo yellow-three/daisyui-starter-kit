@@ -6,8 +6,8 @@
                 wire:navigate
                 @class([
                     'h-10 lg:h-8 relative flex items-center gap-3 rounded-lg py-0 text-start w-full px-3 my-px border border-transparent',
-                    'text-(--color-accent-content) bg-zinc-800/[4%] dark:bg-white/[7%]' => request()->routeIs('profile.edit'),
-                    'text-zinc-500 dark:text-white/80 hover:text-zinc-800 dark:hover:text-white hover:bg-zinc-800/[4%] dark:hover:bg-white/[7%]' => ! request()->routeIs('profile.edit'),
+                    'text-(--color-accent-content) bg-base-content/[4%]' => request()->routeIs('profile.edit'),
+                    'text-base-content/60 hover:text-base-content hover:bg-base-content/[4%]' => ! request()->routeIs('profile.edit'),
                 ])
             >
                 <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap">{{ __('Profile') }}</div>
@@ -18,8 +18,8 @@
                 wire:navigate
                 @class([
                     'h-10 lg:h-8 relative flex items-center gap-3 rounded-lg py-0 text-start w-full px-3 my-px border border-transparent',
-                    'text-(--color-accent-content) bg-zinc-800/[4%] dark:bg-white/[7%]' => request()->routeIs('security.edit'),
-                    'text-zinc-500 dark:text-white/80 hover:text-zinc-800 dark:hover:text-white hover:bg-zinc-800/[4%] dark:hover:bg-white/[7%]' => ! request()->routeIs('security.edit'),
+                    'text-(--color-accent-content) bg-base-content/[4%]' => request()->routeIs('security.edit'),
+                    'text-base-content/60 hover:text-base-content hover:bg-base-content/[4%]' => ! request()->routeIs('security.edit'),
                 ])
             >
                 <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap">{{ __('Security') }}</div>
@@ -30,8 +30,8 @@
                 wire:navigate
                 @class([
                     'h-10 lg:h-8 relative flex items-center gap-3 rounded-lg py-0 text-start w-full px-3 my-px border border-transparent',
-                    'text-(--color-accent-content) bg-zinc-800/[4%] dark:bg-white/[7%]' => request()->routeIs('appearance.edit'),
-                    'text-zinc-500 dark:text-white/80 hover:text-zinc-800 dark:hover:text-white hover:bg-zinc-800/[4%] dark:hover:bg-white/[7%]' => ! request()->routeIs('appearance.edit'),
+                    'text-(--color-accent-content) bg-base-content/[4%]' => request()->routeIs('appearance.edit'),
+                    'text-base-content/60 hover:text-base-content hover:bg-base-content/[4%]' => ! request()->routeIs('appearance.edit'),
                 ])
             >
                 <div class="flex-1 text-sm font-medium leading-none whitespace-nowrap">{{ __('Appearance') }}</div>
@@ -39,11 +39,11 @@
         </nav>
     </div>
 
-    <div role="none" class="h-px w-full bg-zinc-800/15 dark:bg-white/20 md:hidden"></div>
+    <div role="none" class="h-px w-full bg-base-content/15 md:hidden"></div>
 
     <div class="flex-1 self-stretch max-md:pt-6">
-        <h2 class="text-sm font-medium text-zinc-800 dark:text-white">{{ $heading ?? '' }}</h2>
-        <p class="text-sm text-zinc-500 dark:text-white/70">{{ $subheading ?? '' }}</p>
+        <h2 class="text-sm font-medium text-base-content">{{ $heading ?? '' }}</h2>
+        <p class="text-sm text-base-content/70">{{ $subheading ?? '' }}</p>
 
         <div class="mt-5 w-full max-w-lg">
             {{ $slot }}

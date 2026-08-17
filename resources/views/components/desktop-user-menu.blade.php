@@ -3,27 +3,27 @@
 ])
 
 <div {{ $attributes->class(['dropdown dropdown-center dropdown-top']) }}>
-    <div tabindex="0" role="button" class="flex items-center gap-2 rounded-btn p-1.5 hover:bg-zinc-200/70 dark:hover:bg-zinc-800" data-test="sidebar-menu-button">
-        <div class="avatar avatar-placeholder">
+    <div tabindex="0" role="button" class="flex items-center gap-2 rounded-btn p-1.5 hover:bg-base-200/70" data-test="sidebar-menu-button">
+        <div class="avatar placeholder">
             <div class="w-8 rounded-full bg-accent-content text-sm text-accent-foreground">
                 <span class="text-xl">{{ auth()->user()->initials() }}</span>
             </div>
         </div>
 
-        <span class="truncate text-sm font-medium text-zinc-500 dark:text-white/80">
+        <span class="truncate text-sm font-medium text-base-content/70">
             {{ auth()->user()->name }}
         </span>
 
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-zinc-400 dark:text-white/80" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 text-base-content/60" aria-hidden="true">
             <path d="m7 15 5 5 5-5" />
             <path d="m7 9 5-5 5 5" />
         </svg>
     </div>
 
-    <ul tabindex="-1" class="dropdown-content menu z-1 mt-2 w-64 rounded-box border border-zinc-200 bg-white p-2 shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
+    <ul tabindex="-1" class="dropdown-content menu z-1 mt-2 w-64 rounded-box border border-base-300 bg-base-100 p-2 shadow-lg">
         <li>
             <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-                <div class="avatar avatar-placeholder">
+        <div class="avatar avatar-placeholder">
                     <div class="w-8 rounded-full bg-accent-content text-accent-foreground">
                         <span class="text-xl">{{ auth()->user()->initials() }}</span>
                     </div>
@@ -31,7 +31,7 @@
 
                 <div class="grid flex-1 text-start text-sm leading-tight">
                     <span class="truncate font-medium">{{ auth()->user()->name }}</span>
-                    <span class="truncate text-zinc-500 dark:text-zinc-400">{{ auth()->user()->email }}</span>
+                    <span class="truncate text-base-content/60">{{ auth()->user()->email }}</span>
                 </div>
             </div>
         </li>

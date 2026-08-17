@@ -10,11 +10,11 @@ new #[Title('Appearance settings')] class extends Component {
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <h2 class="sr-only text-sm font-medium text-zinc-800 dark:text-white">{{ __('Appearance settings') }}</h2>
+    <h2 class="sr-only text-sm font-medium text-base-content">{{ __('Appearance settings') }}</h2>
 
     <x-pages::settings.layout :heading="__('Appearance')" :subheading="__('Update the appearance settings for your account')">
         <div
-            class="flex w-full rounded-box gap-1 bg-zinc-100 p-1 dark:bg-zinc-800"
+            class="flex w-full rounded-box gap-1 bg-base-200 p-1"
             role="radiogroup"
             aria-label="{{ __('Appearance') }}"
             x-data="{

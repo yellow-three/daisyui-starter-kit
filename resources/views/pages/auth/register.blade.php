@@ -10,7 +10,7 @@
 
             <!-- Name -->
             <div class="flex flex-col gap-3">
-                <label for="name" class="text-sm font-medium text-zinc-800 dark:text-white">
+                <label for="name" class="text-sm font-medium text-base-content">
                     {{ __('Name') }}
                 </label>
 
@@ -29,7 +29,7 @@
 
             <!-- Email Address -->
             <div class="flex flex-col gap-3">
-                <label for="email" class="text-sm font-medium text-zinc-800 dark:text-white">
+                <label for="email" class="text-sm font-medium text-base-content">
                     {{ __('Email address') }}
                 </label>
 
@@ -47,7 +47,7 @@
 
             <!-- Password -->
             <div class="flex flex-col gap-3">
-                <label for="password" class="text-sm font-medium text-zinc-800 dark:text-white">
+                <label for="password" class="text-sm font-medium text-base-content">
                     {{ __('Password') }}
                 </label>
 
@@ -68,7 +68,7 @@
                         type="button"
                         x-on:click="show = !show"
                         aria-label="{{ __('Toggle password visibility') }}"
-                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-zinc-500 hover:text-zinc-800 dark:hover:text-white"
+                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-base-content/50 hover:text-base-content"
                     >
                         <svg :class="show ? 'hidden' : ''" class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
@@ -84,7 +84,7 @@
 
             <!-- Confirm Password -->
             <div class="flex flex-col gap-3">
-                <label for="password_confirmation" class="text-sm font-medium text-zinc-800 dark:text-white">
+                <label for="password_confirmation" class="text-sm font-medium text-base-content">
                     {{ __('Confirm password') }}
                 </label>
 
@@ -105,7 +105,7 @@
                         type="button"
                         x-on:click="show = !show"
                         aria-label="{{ __('Toggle password visibility') }}"
-                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-zinc-500 hover:text-zinc-800 dark:hover:text-white"
+                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-base-content/50 hover:text-base-content"
                     >
                         <svg :class="show ? 'hidden' : ''" class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
@@ -126,7 +126,7 @@
             </div>
         </form>
 
-        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
+        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-base-content/60">
             <span>{{ __('Already have an account?') }}</span>
             <a href="{{ route('login') }}" wire:navigate class="text-sm font-medium text-[var(--color-accent-content)] underline underline-offset-[6px] hover:decoration-current">{{ __('Log in') }}</a>
         </div>

@@ -6,8 +6,8 @@ new class extends Component {}; ?>
 
 <section class="mt-10 space-y-6">
     <div class="relative mb-5">
-        <h2 class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('Delete account') }}</h2>
-        <p class="text-sm text-zinc-500 dark:text-white/70">{{ __('Delete your account and all of its resources') }}</p>
+        <h2 class="text-sm font-medium text-base-content">{{ __('Delete account') }}</h2>
+        <p class="text-sm text-base-content/70">{{ __('Delete your account and all of its resources') }}</p>
     </div>
 
     <button

@@ -78,24 +78,24 @@ new #[Title('Profile settings')] class extends Component {
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <h2 class="sr-only text-sm font-medium text-zinc-800 dark:text-white">{{ __('Profile settings') }}</h2>
+    <h2 class="sr-only text-sm font-medium text-base-content">{{ __('Profile settings') }}</h2>
 
     <x-pages::settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
             <div class="flex flex-col gap-3">
-                <label for="name" class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('Name') }}</label>
+                <label for="name" class="text-sm font-medium text-base-content">{{ __('Name') }}</label>
                 <input id="name" wire:model="name" type="text" required autofocus autocomplete="name" class="input w-full" />
             </div>
 
             <div>
                 <div class="flex flex-col gap-3">
-                    <label for="email" class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('Email') }}</label>
+                    <label for="email" class="text-sm font-medium text-base-content">{{ __('Email') }}</label>
                     <input id="email" wire:model="email" type="email" required autocomplete="email" class="input w-full" />
                 </div>
 
                 @if ($this->hasUnverifiedEmail)
                     <div>
-                        <p class="mt-4 text-sm text-zinc-500 dark:text-white/70">
+                        <p class="mt-4 text-sm text-base-content/70">
                             {{ __('Your email address is unverified.') }}
 
                             <button
@@ -108,7 +108,7 @@ new #[Title('Profile settings')] class extends Component {
                         </p>
 
                         @if (session('status') === 'verification-link-sent')
-                            <p class="mt-2 text-sm font-medium text-green-600! dark:text-green-400!">
+                            <p class="mt-2 text-sm font-medium text-success">
                                 {{ __('A new verification link has been sent to your email address.') }}
                             </p>
                         @endif

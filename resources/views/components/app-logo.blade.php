@@ -8,7 +8,7 @@
         <span class="flex aspect-square size-8 items-center justify-center rounded-md bg-accent-content text-accent-foreground">
             <x-app-logo-icon class="size-5 fill-current text-white dark:text-black" />
         </span>
-        <span class="min-w-0 truncate text-sm font-medium text-zinc-800 dark:text-zinc-100">
+        <span class="min-w-0 truncate text-sm font-medium text-base-content">
             {{ config('app.name', 'Laravel') }}
         </span>
     </a>
@@ -17,7 +17,7 @@
         <span class="flex aspect-square size-8 items-center justify-center rounded-md bg-accent-content text-accent-foreground">
             <x-app-logo-icon class="size-5 fill-current text-white dark:text-black" />
         </span>
-        <span class="truncate text-sm font-medium text-zinc-800 dark:text-zinc-100">
+        <span class="truncate text-sm font-medium text-base-content">
             {{ config('app.name', 'Laravel') }}
         </span>
     </a>

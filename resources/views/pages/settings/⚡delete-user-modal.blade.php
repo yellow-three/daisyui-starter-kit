@@ -35,15 +35,15 @@ new class extends Component {
     <div class="modal-box max-w-lg">
         <form method="POST" wire:submit="deleteUser" class="space-y-6">
             <div>
-                <h3 class="text-base font-medium text-zinc-800 dark:text-white">{{ __('Are you sure you want to delete your account?') }}</h3>
+                <h3 class="text-base font-medium text-base-content">{{ __('Are you sure you want to delete your account?') }}</h3>
 
-                <p class="text-sm text-zinc-500 dark:text-white/70">
+                <p class="text-sm text-base-content/70">
                     {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
                 </p>
             </div>
 
             <div class="flex flex-col gap-3">
-                <label for="password" class="text-sm font-medium text-zinc-800 dark:text-white">{{ __('Password') }}</label>
+                <label for="password" class="text-sm font-medium text-base-content">{{ __('Password') }}</label>
 
                 <div class="relative" x-data="{ show: false }">
                     <input
@@ -62,7 +62,7 @@ new class extends Component {
                         type="button"
                         x-on:click="show = !show"
                         aria-label="{{ __('Toggle password visibility') }}"
-                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-zinc-500 hover:text-zinc-800 dark:hover:text-white"
+                        class="absolute inset-y-0 end-0 flex items-center pe-3 text-base-content/50 hover:text-base-content"
                     >
                         <svg :class="show ? 'hidden' : ''" class="size-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
