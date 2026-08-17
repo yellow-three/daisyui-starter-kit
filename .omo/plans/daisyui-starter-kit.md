@@ -36,7 +36,7 @@ Sequential waves — her wave bir bağımsız birim temizler/paketler, bir sonra
 
 ### Wave 1: Repo & Packaging Foundation
 
-- [ ] 1. `gh repo create yellow-three/daisyui-starter-kit --private` ile yeni GitHub repo oluştur, mevcut `feat/daisyui-migration` branch'inden temiz bir `main` branch'e tüm dosyaları taşı — mevcut branch korunur, yeni repo bağımsız çalışır
+- [x] 1. `gh repo create yellow-three/daisyui-starter-kit --private` ile yeni GitHub repo oluştur, mevcut `feat/daisyui-migration` branch'inden temiz bir `main` branch'e tüm dosyaları taşı — mevcut branch korunur, yeni repo bağımsız çalışır
   - **References**: `laravel/livewire-starter-kit` repo yapısı (github.com/laravel/livewire-starter-kit), Laravel installer `--using` mekanizması (installer/src/NewCommand.php#L1476-1495)
   - **Acceptance criteria**: `git clone` ile yeni repo clone edilebilir, `composer validate` geçer, dizin yapısı clean (tool-specific dizinler yok)
   - **Happy path QA**: `git remote -v` yeni repo'yu gösterir, `ls -la` tool-specific dizinleri (.lerd.yaml, boost.json, .mcp.json, .omo/, .agents/, .codegraph/, .cursor/, .gemini/, .claude/, .junie/) göstermez
