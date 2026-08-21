@@ -102,7 +102,6 @@ return Chisel::script(__DIR__)
 
             $c->files(
                 'app/Actions/Fortify/CreateNewUser.php',
-                'app/Http/Responses/RegisterResponse.php',
                 $paths['register'],
                 'tests/Feature/Auth/RegistrationTest.php',
             )->delete();
@@ -130,7 +129,6 @@ return Chisel::script(__DIR__)
             )->removeSection('email-verification');
 
             $c->files(
-                'app/Http/Responses/VerifyEmailResponse.php',
                 $paths['verify_email'],
                 'tests/Feature/Auth/EmailVerificationTest.php',
             )->delete();
@@ -214,7 +212,6 @@ return Chisel::script(__DIR__)
                 'resources/views/components/passkey-verify.blade.php',
                 'resources/views/components/passkey-registration.blade.php',
                 'resources/js/passkeys.js',
-                'app/Http/Responses/PasskeyLoginResponse.php',
                 'database/migrations/2024_01_01_000000_create_passkeys_table.php',
             )->delete();
         },
