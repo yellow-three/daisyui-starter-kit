@@ -1,7 +1,9 @@
 <?php
 
 use App\Concerns\ProfileValidationRules;
+/* @chisel-email-verification */
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+/* @end-chisel-email-verification */
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Computed;
@@ -43,6 +45,7 @@ new #[Title('Profile settings')] class extends Component {
         $this->dispatch('toast-show', ['type' => 'success', 'message' => __('Profile updated.')]);
     }
 
+    /* @chisel-email-verification */
     /**
      * Send an email verification notification to the current user.
      */
@@ -73,6 +76,7 @@ new #[Title('Profile settings')] class extends Component {
         return ! Auth::user() instanceof MustVerifyEmail
             || (Auth::user() instanceof MustVerifyEmail && Auth::user()->hasVerifiedEmail());
     }
+    /* @end-chisel-email-verification */
 }; ?>
 
 <section class="w-full">
@@ -93,6 +97,7 @@ new #[Title('Profile settings')] class extends Component {
                     <input id="email" wire:model="email" type="email" required autocomplete="email" class="input w-full" />
                 </div>
 
+                {{-- @chisel-email-verification --}}
                 @if ($this->hasUnverifiedEmail)
                     <div>
                         <p class="mt-4 text-sm text-base-content/70">
@@ -114,6 +119,7 @@ new #[Title('Profile settings')] class extends Component {
                         @endif
                     </div>
                 @endif
+                {{-- @end-chisel-email-verification --}}
             </div>
 
             <div class="flex items-center gap-4">
@@ -126,8 +132,12 @@ new #[Title('Profile settings')] class extends Component {
             </div>
         </form>
 
+        {{-- @chisel-email-verification --}}
         @if ($this->showDeleteUser)
+        {{-- @end-chisel-email-verification --}}
             <livewire:pages::settings.delete-user-form />
+        {{-- @chisel-email-verification --}}
         @endif
+        {{-- @end-chisel-email-verification --}}
     </x-pages::settings.layout>
 </section>

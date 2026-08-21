@@ -11,7 +11,9 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                /* @chisel-passkeys */
                 'resources/js/passkeys.js',
+                /* @end-chisel-passkeys */
             ],
             refresh: true,
             fonts: [

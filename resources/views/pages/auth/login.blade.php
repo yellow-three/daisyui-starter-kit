@@ -5,7 +5,9 @@
         <!-- Session Status -->
         <x-auth-session-status class="text-center" :status="session('status')" />
 
+        {{-- @chisel-passkeys --}}
         <x-passkey-verify />
+        {{-- @end-chisel-passkeys --}}
 
         <form method="POST" action="{{ route('login.store') }}" class="flex flex-col gap-6">
             @csrf
@@ -90,9 +92,11 @@
             </div>
         </form>
 
+        {{-- @chisel-registration --}}
         <div class="space-x-1 text-sm text-center rtl:space-x-reverse text-base-content/60">
             <span>{{ __('Don\'t have an account?') }}</span>
             <a href="{{ route('register') }}" wire:navigate class="text-sm font-medium text-[var(--color-accent-content)] underline underline-offset-[6px] hover:decoration-current">{{ __('Sign up') }}</a>
         </div>
+        {{-- @end-chisel-registration --}}
     </div>
 </x-layouts::auth>
