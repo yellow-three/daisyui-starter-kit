@@ -91,7 +91,7 @@
                 <input
                     id="passkey-name"
                     type="text"
-                    class="input input-bordered w-full"
+                    class="input w-full"
                     x-model="name"
                     placeholder="{{ __('e.g., MacBook Pro, iPhone') }}"
                     x-on:keydown.enter.prevent="register()"

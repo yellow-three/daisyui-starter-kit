@@ -6,7 +6,7 @@
                 wire:navigate
                 @class([
                     'h-10 lg:h-8 relative flex items-center gap-3 rounded-lg py-0 text-start w-full px-3 my-px border border-transparent',
-                    'text-(--color-accent-content) bg-base-content/[4%]' => request()->routeIs('profile.edit'),
+                    'text-base-content bg-base-content/[4%]' => request()->routeIs('profile.edit'),
                     'text-base-content/60 hover:text-base-content hover:bg-base-content/[4%]' => ! request()->routeIs('profile.edit'),
                 ])
             >
@@ -18,7 +18,7 @@
                 wire:navigate
                 @class([
                     'h-10 lg:h-8 relative flex items-center gap-3 rounded-lg py-0 text-start w-full px-3 my-px border border-transparent',
-                    'text-(--color-accent-content) bg-base-content/[4%]' => request()->routeIs('security.edit'),
+                    'text-base-content bg-base-content/[4%]' => request()->routeIs('security.edit'),
                     'text-base-content/60 hover:text-base-content hover:bg-base-content/[4%]' => ! request()->routeIs('security.edit'),
                 ])
             >
@@ -30,7 +30,7 @@
                 wire:navigate
                 @class([
                     'h-10 lg:h-8 relative flex items-center gap-3 rounded-lg py-0 text-start w-full px-3 my-px border border-transparent',
-                    'text-(--color-accent-content) bg-base-content/[4%]' => request()->routeIs('appearance.edit'),
+                    'text-base-content bg-base-content/[4%]' => request()->routeIs('appearance.edit'),
                     'text-base-content/60 hover:text-base-content hover:bg-base-content/[4%]' => ! request()->routeIs('appearance.edit'),
                 ])
             >

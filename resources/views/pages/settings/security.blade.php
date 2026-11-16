@@ -220,6 +220,8 @@ new #[Title('Security settings')] class extends Component {
                         </svg>
                     </button>
                 </div>
+
+                <x-input-error for="current_password" />
             </div>
 
             <div class="flex flex-col gap-3">
@@ -255,6 +257,8 @@ new #[Title('Security settings')] class extends Component {
                         </svg>
                     </button>
                 </div>
+
+                <x-input-error for="password" />
             </div>
 
             <div class="flex flex-col gap-3">
@@ -290,6 +294,8 @@ new #[Title('Security settings')] class extends Component {
                         </svg>
                     </button>
                 </div>
+
+                <x-input-error for="password_confirmation" />
             </div>
 
             <div class="flex items-center gap-4">
@@ -305,7 +311,7 @@ new #[Title('Security settings')] class extends Component {
                 <h2 class="text-sm font-medium text-base-content">{{ __('Two-factor authentication') }}</h2>
                 <p class="text-sm text-base-content/70">{{ __('Manage your two-factor authentication settings') }}</p>
 
-                <div class="flex flex-col w-full mx-auto space-y-6 text-sm" wire:cloak>
+                <div class="mt-6 flex flex-col w-full mx-auto space-y-6 text-sm" wire:cloak>
                     @if ($twoFactorEnabled)
                         <div class="space-y-4">
                             <p class="text-sm text-base-content/70">
@@ -326,7 +332,7 @@ new #[Title('Security settings')] class extends Component {
                         </div>
                     @else
                         <div class="space-y-4">
-                            <p class="text-sm text-base-content/50">
+                            <p class="text-sm text-base-content/70">
                                 {{ __('When you enable two-factor authentication, you will be prompted for a secure pin during login. This pin can be retrieved from a TOTP-supported application on your phone.') }}
                             </p>
 
@@ -449,7 +455,7 @@ new #[Title('Security settings')] class extends Component {
         </div>
 
         <form method="dialog" class="modal-backdrop">
-            <button type="button">{{ __('Close') }}</button>
+            <button>{{ __('Close') }}</button>
         </form>
     </dialog>
     {{-- @end-chisel-passkeys --}}

@@ -23,6 +23,8 @@
                     placeholder="email@example.com"
                     class="input w-full"
                 />
+
+                <x-input-error for="email" />
             </div>
 
             <button type="submit" class="btn btn-primary w-full" data-test="email-password-reset-link-button">
@@ -32,7 +34,7 @@
 
         <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-base-content/60">
             <span>{{ __('Or, return to') }}</span>
-            <a href="{{ route('login') }}" wire:navigate class="text-sm font-medium text-[var(--color-accent-content)] underline underline-offset-[6px] hover:decoration-current">{{ __('log in') }}</a>
+            <a href="{{ route('login') }}" wire:navigate class="text-sm font-medium text-base-content underline underline-offset-[6px] hover:decoration-current">{{ __('log in') }}</a>
         </div>
     </div>
 </x-layouts::auth>

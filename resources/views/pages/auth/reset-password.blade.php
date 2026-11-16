@@ -26,6 +26,8 @@
                     autocomplete="email"
                     class="input w-full"
                 />
+
+            <x-input-error for="email" />
             </div>
 
             <!-- Password -->
@@ -63,6 +65,8 @@
                         </svg>
                     </button>
                 </div>
+
+                <x-input-error for="password" />
             </div>
 
             <!-- Confirm Password -->
@@ -100,6 +104,8 @@
                         </svg>
                     </button>
                 </div>
+
+                <x-input-error for="password_confirmation" />
             </div>
 
             <div class="flex items-center justify-end">

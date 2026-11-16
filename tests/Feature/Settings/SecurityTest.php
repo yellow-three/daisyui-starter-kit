@@ -70,8 +70,8 @@ test('security settings page renders without two factor when feature is disabled
         ->assertDontSee('Two-factor authentication');
 });
 
+/* @chisel-2fa */
 test('two factor authentication disabled when confirmation abandoned between requests', function () {
-    /* @chisel-2fa */
     $user = User::factory()->create();
 
     $user->forceFill([
@@ -91,8 +91,37 @@ test('two factor authentication disabled when confirmation abandoned between req
         'two_factor_secret' => null,
         'two_factor_recovery_codes' => null,
     ]);
-    /* @end-chisel-2fa */
 });
+
+test('two factor setup does not reveal the secret when already enabled', function () {
+    $user = User::factory()->withTwoFactor()->create([
+        'two_factor_secret' => encrypt('test-secret'),
+    ]);
+
+    $this->actingAs($user);
+
+    Livewire::test('pages::settings.two-factor-setup-modal', ['requiresConfirmation' => true])
+        ->call('startTwoFactorSetup')
+        ->assertDispatched('two-factor-enabled')
+        ->assertSet('manualSetupKey', '')
+        ->assertSet('qrCodeSvg', '');
+
+    expect(decrypt($user->refresh()->two_factor_secret))->toBe('test-secret');
+});
+
+test('recovery codes are only loaded when requested', function () {
+    $user = User::factory()->withTwoFactor()->create([
+        'two_factor_recovery_codes' => encrypt(json_encode(['code1', 'code2'])),
+    ]);
+
+    $this->actingAs($user);
+
+    Livewire::test('pages::settings.two-factor.recovery-codes')
+        ->assertSet('recoveryCodes', [])
+        ->call('viewRecoveryCodes')
+        ->assertSet('recoveryCodes', ['code1', 'code2']);
+});
+/* @end-chisel-2fa */
 
 test('password can be updated', function () {
     $user = User::factory()->create([
@@ -125,5 +154,7 @@ test('correct password must be provided to update password', function () {
         ->set('password_confirmation', 'new-password')
         ->call('updatePassword');
 
-    $response->assertHasErrors(['current_password']);
+    $response
+        ->assertHasErrors(['current_password'])
+        ->assertSee(__('validation.current_password'));
 });

@@ -29,6 +29,8 @@
                     placeholder="email@example.com"
                     class="input w-full"
                 />
+
+                <x-input-error for="email" />
             </div>
 
             <!-- Password -->
@@ -42,7 +44,7 @@
                         <a
                             href="{{ route('password.request') }}"
                             wire:navigate
-                            class="text-sm font-medium text-[var(--color-accent-content)] underline underline-offset-[6px] hover:decoration-current"
+                            class="text-sm font-medium text-base-content underline underline-offset-[6px] hover:decoration-current"
                         >
                             {{ __('Forgot your password?') }}
                         </a>
@@ -77,6 +79,8 @@
                         </svg>
                     </button>
                 </div>
+
+                <x-input-error for="password" />
             </div>
 
             <!-- Remember Me -->
@@ -95,7 +99,7 @@
         {{-- @chisel-registration --}}
         <div class="space-x-1 text-sm text-center rtl:space-x-reverse text-base-content/60">
             <span>{{ __('Don\'t have an account?') }}</span>
-            <a href="{{ route('register') }}" wire:navigate class="text-sm font-medium text-[var(--color-accent-content)] underline underline-offset-[6px] hover:decoration-current">{{ __('Sign up') }}</a>
+            <a href="{{ route('register') }}" wire:navigate class="text-sm font-medium text-base-content underline underline-offset-[6px] hover:decoration-current">{{ __('Sign up') }}</a>
         </div>
         {{-- @end-chisel-registration --}}
     </div>

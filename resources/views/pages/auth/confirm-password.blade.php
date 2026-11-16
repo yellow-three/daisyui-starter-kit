@@ -54,6 +54,8 @@
                         </svg>
                     </button>
                 </div>
+
+                <x-input-error for="password" />
             </div>
 
             <button type="submit" class="btn btn-primary w-full" data-test="confirm-password-button">

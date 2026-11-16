@@ -102,6 +102,6 @@ new class extends Component {
     </div>
 
     <form method="dialog" class="modal-backdrop" x-on:click="open = false">
-        <button type="button">{{ __('Close') }}</button>
+        <button>{{ __('Close') }}</button>
     </form>
 </dialog>

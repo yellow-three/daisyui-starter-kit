@@ -36,6 +36,12 @@ new class extends Component {
     #[On('start-two-factor-setup')]
     public function startTwoFactorSetup(): void
     {
+        if (auth()->user()->hasEnabledTwoFactorAuthentication()) {
+            $this->dispatch('two-factor-enabled');
+
+            return;
+        }
+
         $enableTwoFactorAuthentication = app(EnableTwoFactorAuthentication::class);
         $enableTwoFactorAuthentication(auth()->user());
 
@@ -264,7 +270,7 @@ new class extends Component {
                 <div>
                     <button
                         type="button"
-                        :disabled="$errors->has('setupData')"
+                        @disabled($errors->has('setupData'))
                         wire:click="showVerificationIfNecessary"
                         class="btn btn-primary w-full"
                     >
@@ -339,6 +345,6 @@ new class extends Component {
     </div>
 
     <form method="dialog" class="modal-backdrop" x-on:click="open = false">
-        <button type="button">{{ __('Close') }}</button>
+        <button>{{ __('Close') }}</button>
     </form>
 </dialog>

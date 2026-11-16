@@ -37,6 +37,18 @@ test('users can not authenticate with invalid password', function () {
     $this->assertGuest();
 });
 
+test('login screen shows the validation error after a failed attempt', function () {
+    $user = User::factory()->create();
+
+    $this->from(route('login'))->post(route('login.store'), [
+        'email' => $user->email,
+        'password' => 'wrong-password',
+    ]);
+
+    $this->get(route('login'))->assertSee(__('auth.failed'));
+});
+
+/* @chisel-2fa */
 test('users with two factor enabled are redirected to two factor challenge', function () {
     $this->skipUnlessFortifyHas(Features::twoFactorAuthentication());
 
@@ -55,6 +67,7 @@ test('users with two factor enabled are redirected to two factor challenge', fun
     $response->assertRedirect(route('two-factor.login'));
     $this->assertGuest();
 });
+/* @end-chisel-2fa */
 
 test('users can logout', function () {
     $user = User::factory()->create();

@@ -4,11 +4,11 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-base-100">
-        <div class="drawer lg:drawer-open">
+        <div class="drawer">
             <input id="app-drawer" type="checkbox" class="drawer-toggle" />
 
             <div class="drawer-content flex min-h-screen flex-col">
-                <header class="border-b bg-base-100">
+                <header class="border-b border-base-300 bg-base-100">
                     <div class="navbar">
                         <div class="flex items-center gap-2">
                             <label for="app-drawer" class="btn btn-ghost btn-square mr-2 lg:hidden" aria-label="{{ __('Toggle sidebar') }}">
@@ -42,7 +42,7 @@
                                         <path d="m21 21-4.3-4.3" />
                                     </svg>
                                 </a>
-                                <a href="https://github.com/laravel/livewire-starter-kit" target="_blank" title="{{ __('Repository') }}" class="btn btn-ghost btn-square h-10 max-lg:hidden">
+                                <a href="https://github.com/yellow-three/daisyui-starter-kit" target="_blank" title="{{ __('Repository') }}" class="btn btn-ghost btn-square h-10 max-lg:hidden">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
                                         <path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5" />
                                         <circle cx="13" cy="12" r="2" />
@@ -62,7 +62,7 @@
                                 </a>
                             </nav>
 
-                            <x-desktop-user-menu />
+                            <x-desktop-user-menu class="dropdown-end" />
                         </div>
                     </div>
                 </header>
@@ -71,7 +71,7 @@
             </div>
 
             <div class="drawer-side z-40">
-                <label for="app-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+                <label for="app-drawer" aria-label="{{ __('Close sidebar') }}" class="drawer-overlay"></label>
                 <div class="flex min-h-full w-64 flex-col bg-base-100">
                     <div class="p-4">
                         <x-app-logo :sidebar="true" href="{{ route('dashboard') }}" wire:navigate />
@@ -94,7 +94,7 @@
                         <li class="flex-1"></li>
 
                         <li>
-                            <a href="https://github.com/laravel/livewire-starter-kit" target="_blank">
+                            <a href="https://github.com/yellow-three/daisyui-starter-kit" target="_blank">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
                                     <path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5" />
                                     <circle cx="13" cy="12" r="2" />
