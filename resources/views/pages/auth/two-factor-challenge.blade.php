@@ -62,6 +62,8 @@
                                 class="input input-lg text-center tracking-[0.4em] mx-auto w-40"
                             />
                         </div>
+
+                        <x-input-error for="code" />
                     </div>
 
                     <div x-show="showRecoveryInput">

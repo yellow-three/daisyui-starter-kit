@@ -15,7 +15,7 @@ function chiselRun(array $command, string $label): void
         label: $label,
         keepSummary: true,
         callback: function (Logger $logger) use ($command) {
-            $process = new Process($command);
+            $process = new Process($command, __DIR__);
             $process->run(function ($type, $line) use ($logger) {
                 $logger->line($line);
             });
@@ -145,6 +145,7 @@ return Chisel::script(__DIR__)
                 'app/Providers/FortifyServiceProvider.php',
                 'routes/settings.php',
                 'tests/Feature/Settings/SecurityTest.php',
+                'tests/Feature/Auth/AuthenticationTest.php',
                 ...$paths['security_files'],
             )->removeSectionMarkers('2fa');
         },
@@ -160,6 +161,7 @@ return Chisel::script(__DIR__)
                 'app/Providers/FortifyServiceProvider.php',
                 'routes/settings.php',
                 'tests/Feature/Settings/SecurityTest.php',
+                'tests/Feature/Auth/AuthenticationTest.php',
                 ...$paths['security_files'],
             )->removeSection('2fa');
 

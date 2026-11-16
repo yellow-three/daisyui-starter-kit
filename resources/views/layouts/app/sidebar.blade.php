@@ -19,9 +19,9 @@
                     <div class="flex-1"></div>
 
                     <div class="dropdown dropdown-end">
-                        <div tabindex="0" role="button" class="flex items-center gap-2 rounded-btn p-1.5 hover:bg-base-200/70">
-                            <div class="avatar placeholder">
-                                <div class="w-8 rounded-full bg-accent-content text-sm text-accent-foreground">
+                        <div tabindex="0" role="button" class="flex items-center gap-2 rounded-field p-1.5 hover:bg-base-200/70">
+                            <div class="avatar avatar-placeholder">
+                                <div class="w-8 rounded-full bg-primary text-sm text-primary-content">
                                     <span>{{ auth()->user()->initials() }}</span>
                                 </div>
                             </div>
@@ -34,8 +34,8 @@
                         <ul tabindex="-1" class="dropdown-content menu z-[1] mt-2 w-64 rounded-box border border-base-300 bg-base-100 p-2 shadow-lg">
                             <li>
                                 <div class="flex items-center gap-3 px-1 py-1.5 text-start text-sm">
-                                    <div class="avatar placeholder">
-                                        <div class="w-10 rounded-full bg-accent-content text-accent-foreground">
+                                    <div class="avatar avatar-placeholder">
+                                        <div class="w-10 rounded-full bg-primary text-primary-content">
                                             <span>{{ auth()->user()->initials() }}</span>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
 
                     <ul class="menu w-full rounded-box">
                         <li>
-                            <a href="https://github.com/laravel/livewire-starter-kit" target="_blank">
+                            <a href="https://github.com/yellow-three/daisyui-starter-kit" target="_blank">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
                                     <path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5" />
                                     <circle cx="13" cy="12" r="2" />
@@ -144,7 +144,7 @@
                         </li>
                     </ul>
 
-                    <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
+                    <x-desktop-user-menu class="dropdown-top hidden lg:block" />
                 </aside>
             </div>
         </div>

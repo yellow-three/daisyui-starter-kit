@@ -25,6 +25,8 @@
                     placeholder="{{ __('Full name') }}"
                     class="input w-full"
                 />
+
+                <x-input-error for="name" />
             </div>
 
             <!-- Email Address -->
@@ -43,6 +45,8 @@
                     placeholder="email@example.com"
                     class="input w-full"
                 />
+
+                <x-input-error for="email" />
             </div>
 
             <!-- Password -->
@@ -80,6 +84,8 @@
                         </svg>
                     </button>
                 </div>
+
+                <x-input-error for="password" />
             </div>
 
             <!-- Confirm Password -->
@@ -117,6 +123,8 @@
                         </svg>
                     </button>
                 </div>
+
+                <x-input-error for="password_confirmation" />
             </div>
 
             <div class="flex items-center justify-end">
@@ -128,7 +136,7 @@
 
         <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-base-content/60">
             <span>{{ __('Already have an account?') }}</span>
-            <a href="{{ route('login') }}" wire:navigate class="text-sm font-medium text-[var(--color-accent-content)] underline underline-offset-[6px] hover:decoration-current">{{ __('Log in') }}</a>
+            <a href="{{ route('login') }}" wire:navigate class="text-sm font-medium text-base-content underline underline-offset-[6px] hover:decoration-current">{{ __('Log in') }}</a>
         </div>
     </div>
 </x-layouts::auth>

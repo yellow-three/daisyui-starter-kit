@@ -9,9 +9,9 @@ new class extends Component {
     public array $recoveryCodes = [];
 
     /**
-     * Mount the component.
+     * Load the recovery codes so the user can view them.
      */
-    public function mount(): void
+    public function viewRecoveryCodes(): void
     {
         $this->loadRecoveryCodes();
     }
@@ -57,7 +57,7 @@ new class extends Component {
             </svg>
             <h3 class="text-base font-medium text-base-content">{{ __('2FA recovery codes') }}</h3>
         </div>
-        <p class="text-sm text-base-content/50">
+        <p class="text-sm text-base-content/70">
             {{ __('Recovery codes let you regain access if you lose your 2FA device. Store them in a secure password manager.') }}
         </p>
     </div>
@@ -67,6 +67,7 @@ new class extends Component {
             <button
                 type="button"
                 x-show="!showRecoveryCodes"
+                wire:click="viewRecoveryCodes"
                 @click="showRecoveryCodes = true;"
                 class="btn btn-primary"
                 aria-expanded="false"

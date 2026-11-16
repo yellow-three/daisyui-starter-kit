@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 /* @end-chisel-email-verification */
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -31,6 +32,10 @@ new #[Title('Profile settings')] class extends Component {
     public function updateProfileInformation(): void
     {
         $user = Auth::user();
+
+        if (config('fortify.lowercase_usernames')) {
+            $this->email = Str::lower($this->email);
+        }
 
         $validated = $this->validate($this->profileRules($user->id));
 
@@ -89,12 +94,16 @@ new #[Title('Profile settings')] class extends Component {
             <div class="flex flex-col gap-3">
                 <label for="name" class="text-sm font-medium text-base-content">{{ __('Name') }}</label>
                 <input id="name" wire:model="name" type="text" required autofocus autocomplete="name" class="input w-full" />
+
+                <x-input-error for="name" />
             </div>
 
             <div>
                 <div class="flex flex-col gap-3">
                     <label for="email" class="text-sm font-medium text-base-content">{{ __('Email') }}</label>
                     <input id="email" wire:model="email" type="email" required autocomplete="email" class="input w-full" />
+
+                    <x-input-error for="email" />
                 </div>
 
                 {{-- @chisel-email-verification --}}
@@ -106,7 +115,7 @@ new #[Title('Profile settings')] class extends Component {
                             <button
                                 type="button"
                                 wire:click.prevent="resendVerificationNotification"
-                                class="inline text-sm font-medium cursor-pointer underline underline-offset-[6px] hover:decoration-current text-[var(--color-accent-content)] decoration-[color-mix(in_oklab,var(--color-accent-content),transparent_80%)]"
+                                class="inline text-sm font-medium cursor-pointer underline underline-offset-[6px] hover:decoration-current text-base-content decoration-base-content/20"
                             >
                                 {{ __('Click here to re-send the verification email.') }}
                             </button>

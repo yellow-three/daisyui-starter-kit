@@ -2,11 +2,11 @@
     'name' => null,
 ])
 
-<div {{ $attributes->class(['dropdown dropdown-center dropdown-top']) }}>
-    <div tabindex="0" role="button" class="flex items-center gap-2 rounded-btn p-1.5 hover:bg-base-200/70" data-test="sidebar-menu-button">
-        <div class="avatar placeholder">
-            <div class="w-8 rounded-full bg-accent-content text-sm text-accent-foreground">
-                <span class="text-xl">{{ auth()->user()->initials() }}</span>
+<div {{ $attributes->class(['dropdown']) }}>
+    <div tabindex="0" role="button" class="flex items-center gap-2 rounded-field p-1.5 hover:bg-base-200/70" data-test="sidebar-menu-button">
+        <div class="avatar avatar-placeholder">
+            <div class="w-8 rounded-full bg-primary text-sm text-primary-content">
+                <span>{{ auth()->user()->initials() }}</span>
             </div>
         </div>
 
@@ -20,12 +20,12 @@
         </svg>
     </div>
 
-    <ul tabindex="-1" class="dropdown-content menu z-1 mt-2 w-64 rounded-box border border-base-300 bg-base-100 p-2 shadow-lg">
+    <ul tabindex="-1" class="dropdown-content menu z-1 my-2 w-56 rounded-box border border-base-300 bg-base-100 p-2 shadow-lg">
         <li>
             <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
-        <div class="avatar avatar-placeholder">
-                    <div class="w-8 rounded-full bg-accent-content text-accent-foreground">
-                        <span class="text-xl">{{ auth()->user()->initials() }}</span>
+                <div class="avatar avatar-placeholder">
+                    <div class="w-8 rounded-full bg-primary text-sm text-primary-content">
+                        <span>{{ auth()->user()->initials() }}</span>
                     </div>
                 </div>
 
